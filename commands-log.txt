@@ -1,0 +1,245 @@
+--------------------- LOGIN --------------------- 
+curl -s -X POST http://localhost:4000/users -H "content-type: application/x-www-form-urlencoded" -d 'username=James&orgname=Org1'
+curl -s -X POST http://localhost:4000/users -H "content-type: application/x-www-form-urlencoded" -d 'username=Jenny&orgname=Org2'
+curl -s -X POST http://localhost:4000/users -H "content-type: application/x-www-form-urlencoded" -d 'username=Johan&orgname=Org3'
+curl -s -X POST http://kris.local:4000/orgs
+
+curl -s -X POST \
+  http://kris.local:4000/users \
+  -H "content-type: application/json" \
+  -d '{
+    "username":"Jill",
+    "orgname":"Org1"
+}'
+
+--------------------- CREATE CHANNEL --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"channelName":"mychannel",
+	"channelConfigPath":"../artifacts/channel/mychannel.tx"
+}'
+
+--------------------- JOIN CHANNEL --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/peers \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"]
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/peers \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org2.example.com","peer1.org2.example.com"]
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/peers \
+  -H "authorization: Bearer <insert token3 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org3.example.com","peer1.org3.example.com"]
+}'
+
+--------------------- INSTALL CHAINCODE --------------------- 
+curl -s -X POST \
+  http://localhost:4000/chaincodes \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com"],
+	"chaincodeName":"escrow1",
+	"chaincodePath":"/Users/defaultuser/hyperledger/artifacts/src/example.com/escrow/node",
+	"chaincodeType": "node",
+	"chaincodeVersion":"v0"
+}'
+
+curl -s -X POST \
+  http://localhost:4000/chaincodes \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org2.example.com"],
+	"chaincodeName":"escrow1",
+	"chaincodePath":"/Users/defaultuser/hyperledger/artifacts/src/example.com/escrow/node",
+	"chaincodeType": "node",
+	"chaincodeVersion":"v0"
+}'
+
+curl -s -X POST \
+  http://localhost:4000/chaincodes \
+  -H "authorization: Bearer <insert token here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org3.example.com"],
+	"chaincodeName":"escrow1",
+	"chaincodePath":"/Users/defaultuser/hyperledger/artifacts/src/example.com/escrow/node",
+	"chaincodeType": "node",
+	"chaincodeVersion":"v0"
+}'
+
+--------------------- INSTANTIATE CHAINCODE --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com"],
+	"chaincodeName":"escrow1",
+	"chaincodeVersion":"v0",
+	"chaincodeType": "node",
+	"args":["nothing"]
+}'
+
+--------------------- INVOKE CHAINCODE: CREATE ITEM / MONEY --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/create \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "type": "item",
+    "details": {"name": "x", "amount": "50", "price": "5"}
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/create \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "type": "item",
+    "details": {"name": "y", "amount": "75", "price": "10"}
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/create \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "type": "money",
+    "details": {"name": "RMB", "amount": "750"}
+}'
+
+--------------------- INVOKE CHAINCODE: CREATE PO --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/create \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "type": "po",
+    "details": [{"name": "x", "amount": "70"}, {"name": "y", "amount": "100"}]
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/create \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "type": "po",
+    "details": [{"name": "x", "amount": "25"}, {"name": "y", "amount": "25"}]
+}'
+
+
+--------------------- INVOKE CHAINCODE: DELIVER --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/deliver \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "po": "1",
+    "details": [{"name": "x", "batches": [{"batch": "1", "amount": "50"}, {"batch": "2", "amount": "20"}]}, {"name": "y", "batches": [{"batch": "1", "amount": "50"}, {"batch": "2", "amount": "25"}]}]
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/deliver \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "po": "1",
+    "details": [{"name": "y", "batches": [{"batch": "1", "amount": "25"}]}]
+}'
+
+--------------------- INVOKE CHAINCODE: RECEIVE --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/receive \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "po": "1",
+    "details": [{"name": "x", "batches": [{"batch": "1", "amount": "50"}, {"batch": "2", "amount": "20"}]}, {"name": "y", "batches": [{"batch": "1", "amount": "50"}, {"batch": "2", "amount": "25"}]}]
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/receive \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "peers": ["peer0.org1.example.com"],
+    "po": "1",
+    "details": [{"name": "y", "batches": [{"batch": "1", "amount": "25"}]}]
+}'
+
+--------------------- INVOKE CHAINCODE: TRANSFER --------------------- 
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/transfer \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "type": "item",
+    "details": {"name": "x", "amount": "60", "recipient": "Org2"}
+}'
+
+curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/escrow1/transfer \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json" \
+  -d '{
+    "type": "money",
+    "details": {"name": "RMB", "amount": "75", "recipient": "Org1"}
+}'
+
+--------------------- QUERY CHAINCODE: ITEMS --------------------- 
+curl -s -X GET \
+  "http://localhost:4000/channels/mychannel/chaincodes/escrow1/item?type=money&name=RMB&history=false" \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json"
+
+curl -s -X GET \
+  "http://localhost:4000/channels/mychannel/chaincodes/escrow1/item?type=item&name=x&history=false" \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json"
+
+--------------------- QUERY CHAINCODE: NAMES --------------------- 
+curl -s -X GET \
+  "http://localhost:4000/channels/mychannel/chaincodes/escrow1/names?owner=true" \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json"
+
+curl -s -X GET \
+  "http://localhost:4000/channels/mychannel/chaincodes/escrow1/names?owner=true" \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json"
+
+--------------------- QUERY CHAINCODE: PO --------------------- 
+curl -s -X GET \
+  "http://localhost:4000/channels/mychannel/chaincodes/escrow1/po?history=true&po=1" \
+  -H "authorization: Bearer <insert token2 here>" \
+  -H "content-type: application/json"
+
+
+curl -s -X GET "http://localhost:4000/chaincodes?peer=peer0.org1.example.com&username=James&orgname=Org1&type=installed" \
+  -H "authorization: Bearer <insert token1 here>" \
+  -H "content-type: application/json"

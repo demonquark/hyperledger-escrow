@@ -1,0 +1,205 @@
+{
+  "success": true,
+  "type": "item",
+  "name": "8851294623",
+  "mspid": "Org2MSP",
+  "sum": 60,
+  "batches": [{
+    "batch": 1,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 0
+    }, {
+      "owner": "Org1",
+      "amount": 500
+    }],
+    "history": [{
+      "timestamp": 1530000769,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 500
+      }],
+      "tx_id": "c6b9927c3d3358c659e1991c77d4b0232d9d1602becc54eb4e7ec0946096bcba"
+    }, {
+      "timestamp": 1530000888,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 440
+      }, {
+        "owner": "Org1",
+        "amount": 60
+      }],
+      "tx_id": "051b7065a830565686a8785d2f67c07b6a919c88ddbe47b43816a4d44a5071c1"
+    }, {
+      "timestamp": 1530000990,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 0
+      }, {
+        "owner": "Org1",
+        "amount": 500
+      }],
+      "tx_id": "289d04bf03de15d404ee975857e75337e9482d38a46150cd5f1f70e15d99b44e"
+    }]
+  }, {
+    "batch": 2,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 0
+    }, {
+      "owner": "Org1",
+      "amount": 50
+    }],
+    "history": [{
+      "timestamp": 1530000957,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "c97fb91bb8ce64d80ab421de57f37efb719699405b16edfa67b55d59a54e1066"
+    }, {
+      "timestamp": 1530000990,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 0
+      }, {
+        "owner": "Org1",
+        "amount": 50
+      }],
+      "tx_id": "289d04bf03de15d404ee975857e75337e9482d38a46150cd5f1f70e15d99b44e"
+    }]
+  }, {
+    "batch": 3,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 20
+    }, {
+      "owner": "Org1",
+      "amount": 10
+    }, {
+      "owner": "Org2MSP",
+      "amount": 60
+    }],
+    "history": [{
+      "timestamp": 1530000962,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "a8ca1955601888a7ddc7e20cd4bf01cb7376144b696128a629f1c8b1364263b6"
+    }, {
+      "timestamp": 1530000990,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 40
+      }, {
+        "owner": "Org1",
+        "amount": 10
+      }],
+      "tx_id": "289d04bf03de15d404ee975857e75337e9482d38a46150cd5f1f70e15d99b44e"
+    }, {
+      "timestamp": 1530003933,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 80
+      }],
+      "tx_id": "173addd0f6a90f04e1ba913e85b52386ee79d1a4b7f1d9758b7389bdf21580a3"
+    }, {
+      "timestamp": 1530004045,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 20
+      }, {
+        "owner": "Org2MSP",
+        "amount": 60
+      }],
+      "tx_id": "e74fcf96b09da99cc4f3f86f9e7093349420ff55ae601855b5d469016ea812a6"
+    }]
+  }, {
+    "batch": 4,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 70
+    }],
+    "history": [{
+      "timestamp": 1530002021,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "9e7c0362fe940963db7bf6a695991fb5ba9bfccecccc56a931a398a5ada9b136"
+    }, {
+      "timestamp": 1530003933,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 70
+      }],
+      "tx_id": "173addd0f6a90f04e1ba913e85b52386ee79d1a4b7f1d9758b7389bdf21580a3"
+    }]
+  }, {
+    "batch": 5,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 50
+    }],
+    "history": [{
+      "timestamp": 1530002024,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "b90b3dfc9ab72f0f775779abf1fc2fea612029f2420b214db734d19a92182e82"
+    }]
+  }, {
+    "batch": 6,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 50
+    }],
+    "history": [{
+      "timestamp": 1530002028,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "e7054c2900dcf32718e3a79c35ee5b09ab5e6e3e59d23a68f7b73f6884023efe"
+    }]
+  }, {
+    "batch": 7,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 50
+    }],
+    "history": [{
+      "timestamp": 1530002031,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "78b6c32b0632d93912ffec1bc525b9a5ae68d73e793f7c555978db6c89b10422"
+    }]
+  }, {
+    "batch": 8,
+    "price": 5,
+    "amount": [{
+      "owner": "Org1MSP",
+      "amount": 50
+    }],
+    "history": [{
+      "timestamp": 1530004009,
+      "amount": [{
+        "owner": "Org1MSP",
+        "amount": 50
+      }],
+      "tx_id": "e9c79f37ce9663dd52f61dcf6d24b2417d13685051a0e6dfb6337ca68fa3fab5"
+    }]
+  }],
+  "message": ""
+}

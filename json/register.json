@@ -1,0 +1,20 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : -
+----- endpoint -----
+endpoint : /users
+----- input    -----
+{
+    username : "",            // String. Name of the user. Can be anything
+    orgname  : ""             // String. Name of the organization. Can be anything received from the /orgs endpoint
+}
+----- output   -----
+{
+    success : "true",          // Boolean. Whether or not the transaction was successful.
+    message : "",              // String.  Error/Details message.
+    secret  : "",              // String.  Secret used to register with the blockchain (can be ignored)
+    token   : ""               // String.  <JSON Web Token>. Used to identify this user with the app.
+                               // To use the web token, add it to the header ("authorization", "Bearer <JSON Web Token>" )
+}

@@ -1,0 +1,50 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : query
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/query
+----- input    -----
+{
+    type    : "money",          // String.  Should be "money".
+    name    : "",               // String.  Currency type. Eg: CNY, USD, EUR.
+    history : "false"           // [OPTIONAL] Boolean. Should the output include history? Defaults to false. 
+}
+----- output   -----
+{
+    success : "true",           // Boolean. Whether or not the transaction was successful. 
+    message : "",               // String.  Error/Details message.
+    details :
+        {
+        name    : "",           // String.  Currency type. Eg: CNY, USD, EUR.
+        sum     : "",           // Integer. Total amount of this currency held by the sending organization.
+        batches : 
+            [ 
+                {
+                amount    : 
+                    [ 
+                        { 
+                        owner    : "",   // String.  Organization name. Eg: Org1, Org2, Org3
+                        amount   : "",   // Integer. Total amount of this currency held by this organization.
+                        }, { ... }       // An currency amount may distributed amongst multiple owners.
+                    ], 
+                history :                // [OPTIONAL] An array of transactions involving this item. (does not include purchase orders)
+                    [ 
+                        {
+                        timestamp : "",          // Integer. UNIX timestamp. 
+                        tx_id     : "",          // String.  Transaction id.
+                        amount    : 
+                            [
+                                { 
+                                owner    : "",   // String.  Organization name. Eg: Org1, Org2, Org3
+                                amount   : "",   // Integer. Total amount of this currency held by this organization.
+                                }, { ... }       // An batch amount may distributed amongst multiple owners.
+                            ]
+                        }, { ... }               // An batch history may have multiple transactions
+                    ]
+                }
+            ],            
+        }
+}

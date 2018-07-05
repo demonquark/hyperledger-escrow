@@ -1,0 +1,19 @@
+---
+name: "escrow-demo-org2"
+x-type: "hlfv1"
+description: "Escrow Blockchain Network - client definition for Org2"
+version: "1.0"
+
+# The client section is SDK-specific. The sample below is for the node.js SDK
+client:
+  organization: Org2
+  credentialStore:
+    # [Optional]. Specific to FileKeyValueStore.js 
+    path: "./fabric-client-kv-org2"
+
+    # [Optional]. Specific to the CryptoSuite implementation.
+    cryptoStore:
+      path: "/tmp/fabric-client-kv-org2"
+
+    # [Optional]. Specific to Composer environment
+    wallet: wallet-name

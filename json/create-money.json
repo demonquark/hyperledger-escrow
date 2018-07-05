@@ -1,0 +1,26 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : create
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/create
+----- input    -----
+{
+    type    : "money",          // String.  Should be "money".
+    details : {
+        name   : "",            // String.  Currency type. Eg: CNY, USD, EUR.
+        amount : ""             // Integer. Amount of money created.
+    }
+}
+----- output   -----
+{
+    success : "true",          // Boolean. Whether or not the transaction was successful.
+    message : "",              // String.  Error/Details message.
+    tx_id   : "",              // String.  Transaction id.
+    type    : "money",          // String.  Should be "money".
+    name   : "",               // String.  Currency type. Eg: CNY, USD, EUR.
+    sum     : "",              // Integer. Total amount of this currency held by the sending Organization.
+    amount : ""                // Integer. Amount of money created.
+}

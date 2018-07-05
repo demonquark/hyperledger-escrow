@@ -1,0 +1,34 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : transfer
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/transfer
+----- input    -----
+{
+    type    : "item",           // String. Can be: "item", "money"
+    details : {
+        name      : "",         // String.  Unique name of the item (use the scanned QR code)
+        amount    : "",         // Integer. Amount of item to transfer.
+        recipient : "",         // String.  Organization name of the recipient. Eg: Org1, Org2, Org3
+        batch     : "",         // [OPTIONAL] Integer. Batch ID of the items to transfer. This limits the transfer to items of the given batch.
+    }
+}
+----- output   -----
+{
+    success : "true",          // Boolean. Whether or not the transaction was successful.
+    message : "",              // String.  Error/Details message.
+    tx_id   : "",              // String.  Transaction id.
+    type    : "item",          // String. Can be: "item", "money"
+    name      : "",            // String.  Unique name of the item (use the scanned QR code)
+    amount    : "",            // Integer. Amount of item to transfer.
+    recipient : "",            // String.  Organization name of the recipient. Eg: Org1, Org2, Org3
+    batches : [
+        {
+        batch  : "",          // Integer. Batch ID of the transferred items.
+        amount : "",          // Integer. Amount of transferred items.
+        }, { ... }            // An transfer may consist of multiple batches.
+    ],           
+}

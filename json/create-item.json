@@ -1,0 +1,28 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : create
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/create
+----- input    -----
+{
+    type    : "item",           // String.  Should be "item".
+    details : {
+        name   : "",            // String.  Unique name of the item (use the scanned QR code)
+        amount : "",            // Integer. Amount of item created.
+        price  : ""             // Integer. Price of one item.
+    }
+}
+----- output   -----
+{
+    success : "true",          // Boolean. Whether or not the transaction was successful.
+    message : "",              // String.  Error/Details message.
+    tx_id   : "",              // String.  Transaction id.
+    type    : "item",          // String.  Should be "item".
+    name   : "",               // String.  Currency type. Eg: CNY, USD, EUR.
+    sum     : "",              // Integer. Total amount of this item held by the sending Organization.
+    amount : "",                // Integer. Amount of money created.
+    batch   : ""               // Integer. Batch ID of the newly created items
+}

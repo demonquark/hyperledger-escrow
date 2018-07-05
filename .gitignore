@@ -1,0 +1,16 @@
+# Emacs backup files
+*~
+*#
+.#*
+# Vim file artifacts
+.*.sw*
+# installed platform-specific binaries
+bin/*
+.DS_Store
+.project
+
+# balance transfer sample
+node_modules/*
+package-lock.json
+fabric-client-kv-org*/
+fabric-client-kv-org*

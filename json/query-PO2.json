@@ -1,0 +1,45 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : query
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/query
+----- input    -----
+{
+    type    : "po",           // String.  Should be "po".
+    details : 
+        {
+        po      : "",           // Integer. Purchase order ID that you wish to receive
+        status  : ["",          // [OPTIONAL] Filter for order status. Can be: "created", "partially delivered", "delivered", "received"
+                ... ]           // If empty, the output will return all purchase orders.
+        }
+}
+----- output   -----
+{
+    success : "true",          // Boolean. Whether or not the transaction was successful. 
+    message : "",              // String.  Error/Details message.
+    tx_id   : "",              // String.  Transaction id of the purchase order creation.
+    po      : "",              // Integer. Purchase order ID
+    status  : "created",       // String.  Status of the purchase order. Can be: "created", "partially delivered", "delivered", "received"
+    total   : "",              // Integer. Total cost of purchased order.
+    details : [
+        {
+        name    : "",            // String.  Unique name of the item (use the scanned QR code)
+        amount  : "",            // Integer. Amount of ordered item.
+        total   : "",            // Integer. Total cost of ordered items.
+        batches : [
+            {
+            batch     : "",          // Integer. Batch ID of the ordered items.
+            amount    : "",          // Integer. Amount of items ordered from this batch.
+            pending   : "",          // Integer. Amount of items not yet delivered from this batch.
+            delivered : "",          // Integer. Amount of items already delivered from this batch.
+            received  : "",          // Integer. Amount of items already received from this batch.
+            price     : "",          // Integer. Price of one item.
+            status    : "",          // Integer. Status of the batch. Can be: "created", "partially delivered", "delivered", "received"
+            }, { ... }            // An item may consist of multiple batches.
+        ],
+        }, { ... }                // A purchase order may consist of multiple items.
+    ]
+}

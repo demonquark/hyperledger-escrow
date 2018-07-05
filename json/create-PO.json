@@ -1,0 +1,43 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : create
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/create
+----- input    -----
+{
+    type    : "po",             // String.  Should be "po".
+    details : [
+        {
+        name   : "",            // String.  Unique name of the item (use the scanned QR code)
+        amount : ""             // Integer. Amount of item desired.
+        }, { ... }              // You may enter multiple items.
+    ]
+}
+----- output   -----
+{
+    success : "true",          // Boolean. Whether or not the transaction was successful. 
+    message : "",              // String.  Error/Details message.
+    tx_id   : "",              // String.  Transaction id.
+    type    : "po",            // String.  Should be "po".
+    po      : "",              // Integer. Purchase order ID of the newly created items
+    status  : "created",       // String.  Status of the purchase order. Can be: "created", "partially delivered", "delivered", "received"
+    total   : "",              // Integer. Total cost of purchased order.
+    details : [
+        {
+        name    : "",            // String.  Unique name of the item (use the scanned QR code)
+        amount  : "",            // Integer. Amount of purchased item.
+        total   : "",            // Integer. Total cost of purchased items.
+        batches : [
+            {
+            batch  : "",          // Integer. Batch ID of the purchased items.
+            amount : "",          // Integer. Amount of purchased items in this batch.
+            price  : "",          // Integer. Price of one item.
+            status : "",          // Integer. Status of the batch. Can be: "created", "partially delivered", "delivered", "received"
+            }, { ... }            // An item may consist of multiple batches.
+        ],
+        }, { ... }                // A purchase order may consist of multiple items.
+    ]
+}

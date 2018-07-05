@@ -1,0 +1,55 @@
+----- variables -----
+host          : http://kris.local:4000/
+channelName   : mychannel
+chaincodeName : escrow
+function      : query
+----- endpoint -----
+endpoint : /channels/:channelName/chaincodes/:chaincodeName/:function
+endpoint : /channels/mychannel/chaincodes/escrow/query
+----- input    -----
+{
+    type    : "po",           // String.  Should be "po".
+    po      : "",             // [OPTIONAL] Integer. Purchase order ID that you wish to receive
+    history : "false"         // [OPTIONAL] Boolean. Should the output include history? Defaults to false. 
+}
+----- output   -----
+[{
+    type    : "po",            // String.  Should be "po".
+    po      : "",              // Integer. Purchase order ID
+    status  : "ordered",       // String.  Status of the purchase order. Can be: "ordered", "partial", "delivered", "received"
+    total   : "",              // Integer. Total cost of purchased order.
+    history : [                // [OPTIONAL] An array of transactions involving this purchase order's status.
+        {
+        timestamp : "",        // Integer. UNIX timestamp. 
+        tx_id     : "",        // String.  Transaction id.
+        status    : ""         // String.  Status of the purchase order. Can be: "ordered", "partial", "delivered", "received"
+        }, { ... } ],          // An batch history may have multiple transactions
+    details : [
+        {
+        name    : "",           // String.  Unique name of the item (use the scanned QR code)
+        amount  : "",           // Integer. Amount of ordered item.
+        total   : "",           // Integer. Total cost of ordered items.
+        batches : [
+            {
+            batch     : "",     // Integer. Batch ID of the ordered items.
+            amount    : "",     // Integer. Amount of items ordered from this batch.
+            pending   : "",     // Integer. Amount of items not yet delivered from this batch.
+            delivered : "",     // Integer. Amount of items already delivered from this batch.
+            received  : "",     // Integer. Amount of items already received from this batch.
+            price     : "",     // Integer. Price of one item.
+            status    : "",     // Integer. Status of the batch. Can be: "created", "partially delivered", "delivered", "received"
+            history : [         // [OPTIONAL] An array of transactions involving this batch's position.
+                {
+                timestamp : "", // Integer. UNIX timestamp. 
+                tx_id     : "", // String.  Transaction id.
+                pending   : "", // Integer. Amount of items not yet delivered from this batch.
+                delivered : "", // Integer. Amount of items already delivered from this batch.
+                received  : "", // Integer. Amount of items already received from this batch.
+                status    : ""  // String.  Status of the purchase order. Can be: "ordered", "partial", "delivered", "received"
+                }, { ... } ]    // An batch history may have multiple transactions
+    
+            }, { ... }          // An item may consist of multiple batches.
+        ],
+        }, { ... }              // A purchase order may consist of multiple items.
+    ]
+}, { ... }]
