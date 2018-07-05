@@ -12,6 +12,8 @@ A simple Node.js app to demonstrate blockchain with **__fabric-client__** & **__
 * Copy the downloaded binaries to the ``bin`` directory of this project (overwriting any existing binaries)
   We need the following binaries: ``configtxgen``,``configtxlator``,``cryptogen``,``orderer``,``peer``
 
+Reference the [hyperledger fabric docs](https://hyperledger-fabric.readthedocs.io/en/release-1.1/getting_started.html#hyperledger-fabric-samples) for more information on setup and 
+
 ### Generate Network Artifacts
 
 We will use the ``cryptogen`` tool to generate the cryptographic material (x509 certs and signing keys) for our various network entities. These certificates are representative of identities, and they allow for sign/verify authentication to take place as our entities communicate and transact.
