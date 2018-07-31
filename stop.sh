@@ -11,3 +11,4 @@ rm -rf /tmp/fabric-client-kv-org[1-3]
 ./scripts/restore-config.sh 
 docker network prune
 docker container prune
+docker volume prune

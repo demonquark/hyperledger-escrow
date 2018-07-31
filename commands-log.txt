@@ -74,7 +74,7 @@ curl -s -X POST \
 
 curl -s -X POST \
   http://localhost:4000/chaincodes \
-  -H "authorization: Bearer <insert token here>" \
+  -H "authorization: Bearer <insert token3 here>" \
   -H "content-type: application/json" \
   -d '{
 	"peers": ["peer0.org3.example.com"],
