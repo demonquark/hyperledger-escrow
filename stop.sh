@@ -2,7 +2,7 @@
 
 docker-compose -f artifacts/docker-compose.yaml down
 docker rm -v -f $(docker ps -aq)
-docker rmi -f $(docker images | grep dev | awk '{print $3}')
+docker rmi -f $(docker images | grep dev- | awk '{print $3}')
 rm -rf artifacts/channel/crypto-config
 rm -rf artifacts/channel/genesis.block
 rm -rf artifacts/channel/*.tx
